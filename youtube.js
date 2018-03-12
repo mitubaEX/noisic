@@ -51,6 +51,14 @@ function pause(){
 }
 
 function initPlaylist() {
+  const request = new XMLHttpRequest();
+  request.open('GET', 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&key=AIzaSyBVp6gygj55T-J5_PZLawRsOQiqUW_Gn8s&chart=mostPopular&type=video&videoCategoryId=10&maxResults=20&regionCode=JP');
+  request.addEventListener("load", (event) => {
+    console.log(event.target.status); // => 200
+    console.log(event.target.responseText); // => "{...}"
+    video_array = JSON.parse(event.target.responseText).items.map((n) => n.id.videoId);
+  });
+  request.send();
   player.cuePlaylist({playlist: video_array});
 }
 
