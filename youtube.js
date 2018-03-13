@@ -56,9 +56,9 @@ function pause(){
   }
 }
 
-function initPlaylist() {
+function search() {
   const request = new XMLHttpRequest();
-  request.open('GET', 'https://www.googleapis.com/youtube/v3/search?order=date&videoLicense=youtube&part=snippet&key=AIzaSyBVp6gygj55T-J5_PZLawRsOQiqUW_Gn8s&videoEmbeddable=true&type=video&videoCategoryId=10&maxResults=40');
+  request.open('GET', 'https://www.googleapis.com/youtube/v3/search?order=viewCount&videoLicense=youtube&part=snippet&key=AIzaSyBVp6gygj55T-J5_PZLawRsOQiqUW_Gn8s&safeSearch=moderate&videoEmbeddable=true&type=video&videoCategoryId=10&maxResults=40&q=' + document.getElementById('search_form').value);
   request.addEventListener("load", (event) => {
     console.log(event.target.status); // => 200
     console.log(event.target.responseText); // => "{...}"

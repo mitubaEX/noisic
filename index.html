@@ -11,7 +11,12 @@
   </head>
   <body>
     <div id="ytplayer"></div>
-    <input type="button" value="reset" onclick="initPlaylist()" />
+    <div class="input-group">
+      <input id="search_form" value="" type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" onClick="search()">Go!</button>
+      </span>
+    </div>
     <button type="button" class="btn btn-default" onclick="previousVideo()">
       <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
     </button>
