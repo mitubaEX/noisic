@@ -5,16 +5,21 @@
     <title>Hello World!</title>
     <script src="https://s.ytimg.com/yts/jsbin/www-widgetapi-vflHJ3SDg/www-widgetapi.js"></script>
     <script src="youtube.js"></script>
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.0.0.js"></script>
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
   <body>
     <div id="ytplayer"></div>
-    <input id="pause" type="button" value="pause" onclick="pause()" />
     <input type="button" value="reset" onclick="initPlaylist()" />
-    <input type="button" value="next" onclick="nextVideo()" />
-    <input type="button" value="previous" onclick="previousVideo()" />
-    <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
-    </script>
+    <button type="button" class="btn btn-default" onclick="previousVideo()">
+      <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+    </button>
+    <button type="button" class="btn btn-default" onclick="pause()">
+      <span id="play" class="glyphicon glyphicon-play" aria-hidden="true"></span>
+    </button>
+    <button type="button" class="btn btn-default" onclick="nextVideo()">
+      <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+    </button>
   </body>
 </html>

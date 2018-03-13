@@ -1,4 +1,4 @@
-var video_array = ['0sDzOkFzmUE', 'veC1Z2ZDtFA'];
+var video_array = [];
 var pauseFlag = false;
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/player_api";
@@ -33,7 +33,7 @@ function onPlayerStateChange(event) {
     event.target.playVideo();
   } else if(player.getPlayerState() == -1) {
     event.target.playVideo();
-    document.getElementById('pause').value = 'pause';
+    document.getElementById('play').className = 'glyphicon glyphicon-pause';
   }
 }
 
@@ -49,16 +49,16 @@ function pause(){
   pauseFlag = pauseFlag ? false : true;
   if(pauseFlag) {
     pauseVideo();
-    document.getElementById('pause').value = 'start';
+    document.getElementById('play').className = 'glyphicon glyphicon-play';
   } else {
     player.playVideo();
-    document.getElementById('pause').value = 'pause';
+    document.getElementById('play').className = 'glyphicon glyphicon-pause';
   }
 }
 
 function initPlaylist() {
   const request = new XMLHttpRequest();
-  request.open('GET', 'https://www.googleapis.com/youtube/v3/search?order=date&videoLicense=youtube&part=snippet&key=AIzaSyBVp6gygj55T-J5_PZLawRsOQiqUW_Gn8s&videoEmbeddable=true&type=video&videoCategoryId=10&maxResults=20');
+  request.open('GET', 'https://www.googleapis.com/youtube/v3/search?order=date&videoLicense=youtube&part=snippet&key=AIzaSyBVp6gygj55T-J5_PZLawRsOQiqUW_Gn8s&videoEmbeddable=true&type=video&videoCategoryId=10&maxResults=40');
   request.addEventListener("load", (event) => {
     console.log(event.target.status); // => 200
     console.log(event.target.responseText); // => "{...}"
