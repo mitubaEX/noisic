@@ -33,6 +33,7 @@ function onPlayerStateChange(event) {
     event.target.playVideo();
   } else if(player.getPlayerState() == -1) {
     event.target.playVideo();
+    document.getElementById('pause').value = 'pause';
   }
 }
 
@@ -48,8 +49,10 @@ function pause(){
   pauseFlag = pauseFlag ? false : true;
   if(pauseFlag) {
     pauseVideo();
+    document.getElementById('pause').value = 'start';
   } else {
     player.playVideo();
+    document.getElementById('pause').value = 'pause';
   }
 }
 
