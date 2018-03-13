@@ -13,7 +13,10 @@ function onYouTubePlayerAPIReady() {
     height: '200',
     width: '200',
     videoId: '',
-    playerVars: { 'autoplay': 1, 'controls': 0 },
+    playerVars: {
+      'autoplay': 1,
+      'controls': 0,
+    },
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
@@ -52,14 +55,14 @@ function pause(){
 
 function initPlaylist() {
   const request = new XMLHttpRequest();
-  request.open('GET', 'https://www.googleapis.com/youtube/v3/search?order=date&part=snippet&key=AIzaSyBVp6gygj55T-J5_PZLawRsOQiqUW_Gn8s&chart=mostPopular&type=video&videoCategoryId=10&maxResults=20&regionCode=JP');
+  request.open('GET', 'https://www.googleapis.com/youtube/v3/search?order=date&videoLicense=youtube&part=snippet&key=AIzaSyBVp6gygj55T-J5_PZLawRsOQiqUW_Gn8s&videoEmbeddable=true&type=video&videoCategoryId=10&maxResults=20');
   request.addEventListener("load", (event) => {
     console.log(event.target.status); // => 200
     console.log(event.target.responseText); // => "{...}"
     video_array = JSON.parse(event.target.responseText).items.map((n) => n.id.videoId);
+    player.cuePlaylist({playlist: video_array});
   });
   request.send();
-  player.cuePlaylist({playlist: video_array});
 }
 
 function nextVideo() {
