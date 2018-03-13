@@ -12,10 +12,14 @@
   <body>
     <div id="ytplayer"></div>
     <input type="button" value="reset" onclick="initPlaylist()" />
-    <input type="button" value="next" onclick="nextVideo()" />
-    <input type="button" value="previous" onclick="previousVideo()" />
+    <button type="button" class="btn btn-default" onclick="previousVideo()">
+      <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+    </button>
     <button type="button" class="btn btn-default" onclick="pause()">
       <span id="play" class="glyphicon glyphicon-play" aria-hidden="true"></span>
+    </button>
+    <button type="button" class="btn btn-default" onclick="nextVideo()">
+      <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
     </button>
   </body>
 </html>
