@@ -17,15 +17,18 @@
     </div>
 
     <div align="center">
+      <label><div>Filter:</div></label>
       <label class="radio-inline"><input type="radio" name="kind" value="all" checked="checked">all</label>
       <label class="radio-inline"><input type="radio" name="kind" value="music">music</label>
     </div>
 
-    <div class="input-group" align="center">
-      <input id="search_form" value="" type="text" class="form-control" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" onClick="search()">Go!</button>
-      </span>
+    <div align="center">
+      <div class="input-group" style="width: 80%;">
+        <input id="search_form" value="" type="text" class="form-control" placeholder="Search for..." onkeydown="enter()">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" onClick="search()">Go!</button>
+        </span>
+      </div>
     </div>
 
     <div align="center">

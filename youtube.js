@@ -11,8 +11,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 function onYouTubePlayerAPIReady() {
   player = new YT.Player('ytplayer', {
-    height: '200',
-    width: '200',
+    height: '1',
+    width: '1',
     videoId: '',
     playerVars: {
       'autoplay': 1,
@@ -31,13 +31,23 @@ function onPlayerReady(event) {
 var done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING) {
+    document.getElementById('text').innerHTML = title_array[player.getPlaylistIndex()];
     event.target.playVideo();
   } else if(player.getPlayerState() == -1) {
     if(title_array.length != 0){
       document.getElementById('text').innerHTML = title_array[player.getPlaylistIndex()];
+    } else {
+      document.getElementById('text').innerHTML = 'No Video';
     }
     event.target.playVideo();
     document.getElementById('play').className = 'glyphicon glyphicon-pause';
+
+    // 再生できない動画を飛ばす
+    setTimeout(() => {
+      if(player.getPlayerState() == -1){
+        nextVideo();
+      }
+    }, 1000);
   }
 }
 
@@ -65,8 +75,6 @@ function search() {
   const request = new XMLHttpRequest();
   request.open('GET', 'https://www.googleapis.com/youtube/v3/search?order=viewCount&videoLicense=youtube&part=snippet&key=AIzaSyBVp6gygj55T-J5_PZLawRsOQiqUW_Gn8s&safeSearch=moderate&videoEmbeddable=true&type=video' + category + '&maxResults=40&q=' + document.getElementById('search_form').value);
   request.addEventListener("load", (event) => {
-    // console.log(event.target.status); // => 200
-    // console.log(event.target.responseText); // => "{...}"
     video_array = JSON.parse(event.target.responseText).items.map((n) => n.id.videoId);
     title_array = JSON.parse(event.target.responseText).items.map((n) => n.snippet.title);
     player.cuePlaylist({playlist: video_array});
@@ -83,5 +91,12 @@ function nextVideo() {
 function previousVideo() {
   if(player.getPlaylistIndex() != 0) {
     player.previousVideo();
+  }
+}
+
+function enter(){
+  //EnterキーならSubmit
+  if(window.event.keyCode==13){
+    search();
   }
 }
