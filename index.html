@@ -2,45 +2,40 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>noisic</title>
     <script src="https://s.ytimg.com/yts/jsbin/www-widgetapi-vflHJ3SDg/www-widgetapi.js"></script>
     <script src="youtube.js"></script>
     <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="scroll_text.css">
   </head>
   <body>
     <div id="ytplayer"></div>
-    <div id="marquee">
-      <div id="text"></div>
-    </div>
-
-    <div align="center">
-      <label><div>Filter:</div></label>
-      <label class="radio-inline"><input type="radio" name="kind" value="all" checked="checked">all</label>
-      <label class="radio-inline"><input type="radio" name="kind" value="music">music</label>
-    </div>
 
     <div align="center">
       <div class="input-group" style="width: 80%;">
         <input id="search_form" value="" type="text" class="form-control" placeholder="Search for..." onkeydown="enter()">
         <span class="input-group-btn">
-          <button class="btn btn-default" type="button" onClick="search()">Go!</button>
+          <button class="btn btn-default" type="button" onClick="search()">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </button>
         </span>
       </div>
     </div>
 
     <div align="center">
-      <button type="button" class="btn btn-default" onclick="previousVideo()">
+      <button type="button" class="btn btn-default" onclick="previousVideo()" style="border-style: none;">
         <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
       </button>
-      <button type="button" class="btn btn-default" onclick="pause()">
+      <button type="button" class="btn btn-default" onclick="pause()" style="border-style: none;">
         <span id="play" class="glyphicon glyphicon-play" aria-hidden="true"></span>
       </button>
-      <button type="button" class="btn btn-default" onclick="nextVideo()">
+      <button type="button" class="btn btn-default" onclick="nextVideo()" style="border-style: none;">
         <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
       </button>
     </div>
+    <marquee scrolldelay="100">
+      <div id="text" style="color: red;"></div>
+    </marquee>
   </body>
 </html>
