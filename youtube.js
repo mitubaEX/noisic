@@ -11,8 +11,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 function onYouTubePlayerAPIReady() {
   player = new YT.Player('ytplayer', {
-    height: '200',
-    width: '200',
+    height: '1',
+    width: '1',
     videoId: '',
     playerVars: {
       'autoplay': 1,
@@ -83,5 +83,12 @@ function nextVideo() {
 function previousVideo() {
   if(player.getPlaylistIndex() != 0) {
     player.previousVideo();
+  }
+}
+
+function enter(){
+  //EnterキーならSubmit
+  if(window.event.keyCode==13){
+    search();
   }
 }
