@@ -33,6 +33,11 @@ function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING) {
     document.getElementById('text').innerHTML = title_array[player.getPlaylistIndex()];
     event.target.playVideo();
+    setTimeout(() => {
+      if(player.getPlayerState() == -1){
+        nextVideo();
+      }
+    }, 1000);
   } else if(player.getPlayerState() == -1) {
     if(title_array.length != 0){
       document.getElementById('text').innerHTML = title_array[player.getPlaylistIndex()];
