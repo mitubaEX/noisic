@@ -5,8 +5,16 @@ Simple YouTube client of electron for trend music.
 
 ## Usage
 
+### run
+
 ```
-npm install && npm start
+electron .
+```
+
+### packaging
+
+```
+electron-packager . noisic --platform=darwin --arch=x64 --version=1.0.0
 ```
 
 ## Dependencies
