@@ -33,10 +33,9 @@ function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING) {
     event.target.playVideo();
   } else if(player.getPlayerState() == -1) {
-  if(title_array.length != 0){
-  // 再生時にタイトル設定
-    document.getElementById('text').innerHTML = title_array[player.getPlaylistIndex()];
-  }
+    if(title_array.length != 0){
+      document.getElementById('text').innerHTML = title_array[player.getPlaylistIndex()];
+    }
     event.target.playVideo();
     document.getElementById('play').className = 'glyphicon glyphicon-pause';
   }
@@ -62,11 +61,12 @@ function pause(){
 }
 
 function search() {
+  var category = $('input[name=kind]:checked').val() === 'all' ? '' : '&videoCategoryId=10';
   const request = new XMLHttpRequest();
-  request.open('GET', 'https://www.googleapis.com/youtube/v3/search?order=viewCount&videoLicense=youtube&part=snippet&key=AIzaSyBVp6gygj55T-J5_PZLawRsOQiqUW_Gn8s&safeSearch=moderate&videoEmbeddable=true&type=video&videoCategoryId=10&maxResults=40&q=' + document.getElementById('search_form').value);
+  request.open('GET', 'https://www.googleapis.com/youtube/v3/search?order=viewCount&videoLicense=youtube&part=snippet&key=AIzaSyBVp6gygj55T-J5_PZLawRsOQiqUW_Gn8s&safeSearch=moderate&videoEmbeddable=true&type=video' + category + '&maxResults=40&q=' + document.getElementById('search_form').value);
   request.addEventListener("load", (event) => {
-    console.log(event.target.status); // => 200
-    console.log(event.target.responseText); // => "{...}"
+    // console.log(event.target.status); // => 200
+    // console.log(event.target.responseText); // => "{...}"
     video_array = JSON.parse(event.target.responseText).items.map((n) => n.id.videoId);
     title_array = JSON.parse(event.target.responseText).items.map((n) => n.snippet.title);
     player.cuePlaylist({playlist: video_array});
