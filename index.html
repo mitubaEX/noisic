@@ -15,20 +15,29 @@
     <div id="marquee">
       <div id="text"></div>
     </div>
-    <div class="input-group">
+
+    <div align="center">
+      <label class="radio-inline"><input type="radio" name="kind" value="all" checked="checked">all</label>
+      <label class="radio-inline"><input type="radio" name="kind" value="music">music</label>
+    </div>
+
+    <div class="input-group" align="center">
       <input id="search_form" value="" type="text" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button" onClick="search()">Go!</button>
       </span>
     </div>
-    <button type="button" class="btn btn-default" onclick="previousVideo()">
-      <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
-    </button>
-    <button type="button" class="btn btn-default" onclick="pause()">
-      <span id="play" class="glyphicon glyphicon-play" aria-hidden="true"></span>
-    </button>
-    <button type="button" class="btn btn-default" onclick="nextVideo()">
-      <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
-    </button>
+
+    <div align="center">
+      <button type="button" class="btn btn-default" onclick="previousVideo()">
+        <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="btn btn-default" onclick="pause()">
+        <span id="play" class="glyphicon glyphicon-play" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="btn btn-default" onclick="nextVideo()">
+        <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+      </button>
+    </div>
   </body>
 </html>
