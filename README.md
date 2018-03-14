@@ -2,6 +2,8 @@
 
 Simple YouTube client of electron for trend music.
 
+## Demo
+
 ![demo](movie/ezgif-2-10600aa621.gif)
 
 ## Usage
