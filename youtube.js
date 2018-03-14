@@ -1,4 +1,5 @@
 var video_array = [];
+var title_array = [];
 var pauseFlag = false;
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/player_api";
@@ -32,6 +33,10 @@ function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING) {
     event.target.playVideo();
   } else if(player.getPlayerState() == -1) {
+  if(title_array.length != 0){
+  // 再生時にタイトル設定
+    document.getElementById('text').innerHTML = title_array[player.getPlaylistIndex()];
+  }
     event.target.playVideo();
     document.getElementById('play').className = 'glyphicon glyphicon-pause';
   }
@@ -63,6 +68,7 @@ function search() {
     console.log(event.target.status); // => 200
     console.log(event.target.responseText); // => "{...}"
     video_array = JSON.parse(event.target.responseText).items.map((n) => n.id.videoId);
+    title_array = JSON.parse(event.target.responseText).items.map((n) => n.snippet.title);
     player.cuePlaylist({playlist: video_array});
   });
   request.send();
