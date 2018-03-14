@@ -14,7 +14,7 @@ electron .
 ### packaging
 
 ```
-electron-packager . noisic --platform=darwin --arch=x64 --version=1.0.0
+electron-packager . noisic --platform=darwin --arch=x64 --icon=icon/icons8-handball-filled-100.icns --version=1.0.0
 ```
 
 ## Dependencies
