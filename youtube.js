@@ -6,6 +6,8 @@ tag.src = "https://www.youtube.com/player_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
+var video_index = 0;
+
 // Replace the 'ytplayer' element with an <iframe> and
 // YouTube player after the API code downloads.
 var player;
@@ -20,7 +22,8 @@ function onYouTubePlayerAPIReady() {
     },
     events: {
       'onReady': onPlayerReady,
-      'onStateChange': onPlayerStateChange
+      'onStateChange': onPlayerStateChange,
+      'onError': onPlayerError
     }
   });
 }
@@ -28,31 +31,27 @@ function onYouTubePlayerAPIReady() {
 function onPlayerReady(event) {
   event.target.playVideo();
 }
+
 var done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING) {
-    document.getElementById('text').innerHTML = title_array[player.getPlaylistIndex()];
-    event.target.playVideo();
-    setTimeout(() => {
-      if(player.getPlayerState() == -1){
-        nextVideo();
-      }
-    }, 1000);
-  } else if(player.getPlayerState() == -1) {
-    if(title_array.length != 0){
-      document.getElementById('text').innerHTML = title_array[player.getPlaylistIndex()];
+    if(title_array.length !== 0){
+      document.getElementById('text').innerHTML = title_array[video_index];
     } else {
       document.getElementById('text').innerHTML = 'No Video';
     }
-    event.target.playVideo();
+  } else if(player.getPlayerState() === -1) {
+    player.playVideo();
     document.getElementById('play').className = 'glyphicon glyphicon-pause';
 
     // 再生できない動画を飛ばす
     setTimeout(() => {
-      if(player.getPlayerState() == -1){
+      if(player.getPlayerState() === -1){
         nextVideo();
       }
     }, 1000);
+  } else if(player.getPlayerState() === 5){
+    player.playVideo();
   }
 }
 
@@ -81,26 +80,33 @@ function search() {
   request.addEventListener("load", (event) => {
     video_array = JSON.parse(event.target.responseText).items.map((n) => n.id.videoId);
     title_array = JSON.parse(event.target.responseText).items.map((n) => n.snippet.title);
-    player.cuePlaylist({playlist: video_array});
+    video_index = 0;
+    player.loadVideoById({videoId: video_array[video_index]});
   });
   request.send();
 }
 
 function nextVideo() {
-  if(player.getPlaylistIndex() != video_array.length - 1) {
-    player.nextVideo();
+  if(video_index !== video_array.length - 1) {
+    video_index += 1;
+    player.loadVideoById(video_array[video_index]);
   }
 }
 
 function previousVideo() {
-  if(player.getPlaylistIndex() != 0) {
-    player.previousVideo();
+  if(video_index !== 0) {
+    video_index -= 1;
+    player.loadVideoById(video_array[video_index]);
   }
 }
 
 function enter(){
   //EnterキーならSubmit
-  if(window.event.keyCode==13){
+  if(window.event.keyCode===13){
     search();
   }
+}
+
+function onPlayerError(event){
+  console.log(event)
 }
