@@ -6,6 +6,12 @@ Simple YouTube client of electron for trend music.
 
 ![demo](movie/ezgif-2-10600aa621.gif)
 
+## Download
+
+Please download from releases page.
+
+[releases page](https://github.com/mitubaEX/noisic/releases)
+
 ## Usage
 
 ### run
