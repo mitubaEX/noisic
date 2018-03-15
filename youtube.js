@@ -52,6 +52,8 @@ function onPlayerStateChange(event) {
     }, 1000);
   } else if(player.getPlayerState() === 5){
     player.playVideo();
+  } else if (player.getPlayerState() === 0){
+    nextVideo();
   }
 }
 
