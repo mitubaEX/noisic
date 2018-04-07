@@ -26,6 +26,17 @@ electron .
 electron-packager . noisic --platform=darwin --arch=x64 --icon=icon/icons8-handball-filled-100.icns --version=1.0.0
 ```
 
+#### for Linux
+
+- Ref
+[electron-installer-debian](https://github.com/unindented/electron-installer-debian)
+
+```
+brew install fakeroot dpkg
+npm install -g electron-installer-debian
+electron-packager . noisic --platform=linux --arch=x64 --icon=icon/icons8-handball-filled-100.icns --version=1.0.0
+```
+
 ## Dependencies
 
 [electron-quick-start](https://github.com/electron/electron-quick-start)
