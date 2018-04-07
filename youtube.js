@@ -29,6 +29,7 @@ function onYouTubePlayerAPIReady() {
 }
 
 function onPlayerReady(event) {
+  player.setPlaybackQuality('small');
   event.target.playVideo();
 }
 
