@@ -79,7 +79,7 @@ function pause(){
 
 function search() {
   const request = new XMLHttpRequest();
-  request.open('GET', 'https://www.googleapis.com/youtube/v3/search?order=viewCount&videoLicense=youtube&part=snippet&key=AIzaSyBVp6gygj55T-J5_PZLawRsOQiqUW_Gn8s&safeSearch=moderate&videoEmbeddable=true&type=video&maxResults=40&q=' + document.getElementById('search_form').value);
+  request.open('GET', 'https://www.googleapis.com/youtube/v3/search?order=viewCount&videoLicense=youtube&part=snippet&key=AIzaSyBVp6gygj55T-J5_PZLawRsOQiqUW_Gn8s&safeSearch=moderate&videoEmbeddable=true&videoCategoryId=10&type=video&maxResults=40&q=' + document.getElementById('search_form').value);
   request.addEventListener("load", (event) => {
     video_array = JSON.parse(event.target.responseText).items.map((n) => n.id.videoId);
     title_array = JSON.parse(event.target.responseText).items.map((n) => n.snippet.title);
